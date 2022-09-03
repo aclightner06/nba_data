@@ -83,7 +83,9 @@ class NBA:
 
     def get_data(self):
 
-        data = [[x.getText() if j not in self.use_links else x.a['href']                  for j, x in enumerate(self.rows[i].findAll(self.data_schema['data_attrs']))][self.data_schema["data_offset"]:]                 for i in range(len(self.rows))]
+        data = [[x.getText() if j not in self.use_links else x.a['href'] \
+                 for j, x in enumerate(self.rows[i].findAll(self.data_schema['data_attrs']))][self.data_schema["data_offset"]:] \
+                for i in range(len(self.rows))]
 
         max_list_len = max(list(map(lambda x: len(x), data)))
         self.data = [self.pad_list(sub,max_list_len) for sub in data if len(sub) > 0]
